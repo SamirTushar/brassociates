@@ -3,7 +3,7 @@
 import { CheckCircle, Phone, MessageCircle, Video, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const steps = [
   {
@@ -41,6 +41,50 @@ const steps = [
 export default function Consultation() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      fullName: formData.get('fullName') as string,
+      mobile: formData.get('mobile') as string,
+      email: formData.get('email') as string,
+      legalMatter: formData.get('legalMatter') as string,
+      consultationMode: formData.get('consultationMode') as string,
+      preferredDateTime: formData.get('preferredDateTime') as string,
+      description: formData.get('description') as string,
+    };
+
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        e.currentTarget.reset();
+        // Scroll to top of form to show success message
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="consultation" ref={ref} className="bg-white py-20">
@@ -135,7 +179,31 @@ export default function Consultation() {
               Book Your Free Consultation
             </h3>
 
-            <form className="space-y-6">
+            {/* Success Message */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 rounded">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <p className="font-body text-green-800 font-semibold">
+                    Thank you! Your consultation request has been submitted successfully.
+                  </p>
+                </div>
+                <p className="font-body text-sm text-green-700 mt-2">
+                  We will contact you shortly to confirm your consultation time.
+                </p>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                <p className="font-body text-red-800 font-semibold">
+                  Oops! Something went wrong. Please try again or call us directly.
+                </p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
                 <label
@@ -311,9 +379,10 @@ export default function Consultation() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-secondary text-dark font-body font-bold py-4 rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
+                disabled={isSubmitting}
+                className="w-full bg-secondary text-dark font-body font-bold py-4 rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Book Free Consultation
+                {isSubmitting ? 'Submitting...' : 'Book Free Consultation'}
               </button>
 
               {/* Privacy Note */}
