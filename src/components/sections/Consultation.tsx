@@ -51,13 +51,38 @@ export default function Consultation() {
 
     const formData = new FormData(e.currentTarget);
 
+    // Combine date and time into a single string
+    const preferredDate = formData.get('preferredDate') as string;
+    const preferredTime = formData.get('preferredTime') as string;
+    let preferredDateTime = '';
+
+    if (preferredDate && preferredTime) {
+      // Format: "Jan 15, 2024 at 3:00 PM"
+      const dateObj = new Date(preferredDate);
+      const formattedDate = dateObj.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      preferredDateTime = `${formattedDate} at ${preferredTime}`;
+    } else if (preferredDate) {
+      const dateObj = new Date(preferredDate);
+      preferredDateTime = dateObj.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    } else if (preferredTime) {
+      preferredDateTime = preferredTime;
+    }
+
     const data = {
       fullName: formData.get('fullName') as string,
       mobile: formData.get('mobile') as string,
       email: formData.get('email') as string,
       legalMatter: formData.get('legalMatter') as string,
       consultationMode: formData.get('consultationMode') as string,
-      preferredDateTime: formData.get('preferredDateTime') as string,
+      preferredDateTime,
       description: formData.get('description') as string,
     };
 
@@ -343,20 +368,53 @@ export default function Consultation() {
               </div>
 
               {/* Preferred Date & Time */}
-              <div>
-                <label
-                  htmlFor="preferredDateTime"
-                  className="block font-body text-sm font-medium text-primary mb-2"
-                >
-                  Preferred Date & Time (optional)
-                </label>
-                <input
-                  type="text"
-                  id="preferredDateTime"
-                  name="preferredDateTime"
-                  className="w-full border border-gray-300 rounded-md py-3 px-4 font-body text-dark focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors bg-white"
-                  placeholder="e.g., 15 Jan, 3 PM"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Preferred Date */}
+                <div>
+                  <label
+                    htmlFor="preferredDate"
+                    className="block font-body text-sm font-medium text-primary mb-2"
+                  >
+                    Preferred Date (optional)
+                  </label>
+                  <input
+                    type="date"
+                    id="preferredDate"
+                    name="preferredDate"
+                    min={new Date().toISOString().split('T')[0]}
+                    className="w-full border border-gray-300 rounded-md py-3 px-4 font-body text-dark focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors bg-white"
+                  />
+                </div>
+
+                {/* Preferred Time */}
+                <div>
+                  <label
+                    htmlFor="preferredTime"
+                    className="block font-body text-sm font-medium text-primary mb-2"
+                  >
+                    Preferred Time (optional)
+                  </label>
+                  <select
+                    id="preferredTime"
+                    name="preferredTime"
+                    className="w-full border border-gray-300 rounded-md py-3 px-4 font-body text-dark focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors bg-white"
+                  >
+                    <option value="">Select time slot</option>
+                    <option value="09:00 AM">09:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="01:00 PM">01:00 PM</option>
+                    <option value="02:00 PM">02:00 PM</option>
+                    <option value="03:00 PM">03:00 PM</option>
+                    <option value="04:00 PM">04:00 PM</option>
+                    <option value="05:00 PM">05:00 PM</option>
+                    <option value="06:00 PM">06:00 PM</option>
+                    <option value="07:00 PM">07:00 PM</option>
+                    <option value="08:00 PM">08:00 PM</option>
+                    <option value="09:00 PM">09:00 PM</option>
+                  </select>
+                </div>
               </div>
 
               {/* Brief Description */}
