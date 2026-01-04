@@ -47,12 +47,6 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
-              href="#home"
-              className="font-body text-dark hover:text-primary transition-colors"
-            >
-              Home
-            </Link>
-            <Link
               href="#about"
               className="font-body text-dark hover:text-primary transition-colors"
             >
@@ -69,12 +63,6 @@ export default function Header() {
               className="font-body text-dark hover:text-primary transition-colors"
             >
               Consultation
-            </Link>
-            <Link
-              href="#contact"
-              className="font-body text-dark hover:text-primary transition-colors"
-            >
-              Contact
             </Link>
             <Link
               href="#marathi"
