@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import prisma from '@/lib/prisma';
 
 export async function POST(request: Request) {
   try {
@@ -20,48 +20,31 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if Supabase is configured
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.error('❌ Supabase is not configured');
-      return NextResponse.json(
-        { error: 'Database service is not configured' },
-        { status: 500 }
-      );
-    }
-
-    // Initialize Supabase client
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    );
-
     // Save to database FIRST (most important - never lose data)
     console.log('💾 Saving to database...');
-    const { data: savedData, error: dbError } = await supabase
-      .from('consultations')
-      .insert([
-        {
-          full_name: data.fullName,
+
+    try {
+      const savedData = await prisma.consultation.create({
+        data: {
+          fullName: data.fullName,
           mobile: data.mobile,
           email: data.email || null,
-          legal_matter: data.legalMatter,
-          consultation_mode: data.consultationMode,
-          preferred_date_time: data.preferredDateTime || null,
+          legalMatter: data.legalMatter,
+          consultationMode: data.consultationMode,
+          preferredDateTime: data.preferredDateTime || null,
           description: data.description || null,
           status: 'pending'
         }
-      ])
-      .select();
+      });
 
-    if (dbError) {
+      console.log('✅ Saved to database successfully!', savedData.id);
+    } catch (dbError) {
       console.error('❌ Database error:', dbError);
       return NextResponse.json(
-        { error: 'Failed to save consultation request' },
+        { error: 'Failed to save consultation request. Database may not be set up yet.' },
         { status: 500 }
       );
     }
-
-    console.log('✅ Saved to database successfully!', savedData);
 
     // Now try to send email notification (non-critical - data is already saved)
     console.log('📧 Attempting to send email notification...');

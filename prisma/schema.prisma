@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Consultation {
+  id                 String   @id @default(cuid())
+  fullName           String   @map("full_name")
+  mobile             String
+  email              String?
+  legalMatter        String   @map("legal_matter")
+  consultationMode   String   @map("consultation_mode")
+  preferredDateTime  String?  @map("preferred_date_time")
+  description        String?
+  status             String   @default("pending")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  @@map("consultations")
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+}
