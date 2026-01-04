@@ -100,14 +100,10 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-1 lg:w-[45%] relative w-full max-w-md lg:max-w-none order-1 lg:order-2 mb-8 lg:mb-0"
-            style={{ height: '400px' }}
+            className="flex-1 lg:w-[45%] w-full order-1 lg:order-2 mb-8 lg:mb-0"
           >
-            {/* Navy Blue Block */}
-            <div className="absolute right-0 top-10 w-4/5 h-[350px] sm:h-[400px] lg:h-[450px] bg-primary rounded-l-lg" />
-
-            {/* Lawyer Photo - Overlapping Navy Block */}
-            <div className="absolute left-0 top-0 w-4/5 h-[400px] sm:h-[450px] lg:h-[500px] rounded-lg shadow-2xl overflow-hidden">
+            {/* Mobile: Simple Image (no absolute positioning) */}
+            <div className="lg:hidden relative w-full h-[400px] rounded-lg shadow-2xl overflow-hidden">
               <Image
                 src="/photo1.webp"
                 alt="Adv. Bhakti Rajput - Legal Advocate"
@@ -115,6 +111,23 @@ export default function Hero() {
                 className="object-cover"
                 priority
               />
+            </div>
+
+            {/* Desktop: Image with Navy Block (absolute positioning) */}
+            <div className="hidden lg:block relative h-[500px] max-w-md lg:max-w-none">
+              {/* Navy Blue Block */}
+              <div className="absolute right-0 top-10 w-4/5 h-[450px] bg-primary rounded-l-lg" />
+
+              {/* Lawyer Photo - Overlapping Navy Block */}
+              <div className="absolute left-0 top-0 w-4/5 h-[500px] rounded-lg shadow-2xl overflow-hidden">
+                <Image
+                  src="/photo1.webp"
+                  alt="Adv. Bhakti Rajput - Legal Advocate"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </div>
