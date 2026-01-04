@@ -90,6 +90,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="#consultation"
+                  className="text-cream text-sm hover:text-secondary transition-colors"
+                >
+                  Consultation
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="#contact"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
@@ -126,7 +134,7 @@ export default function Footer() {
                   href="#practice-areas"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
-                  Criminal Defense
+                  Family & Matrimonial Law
                 </Link>
               </li>
               <li>
@@ -134,7 +142,7 @@ export default function Footer() {
                   href="#practice-areas"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
-                  Family & Matrimonial
+                  Criminal Defense
                 </Link>
               </li>
               <li>
@@ -150,14 +158,6 @@ export default function Footer() {
                   href="#practice-areas"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
-                  Corporate Law
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#practice-areas"
-                  className="text-cream text-sm hover:text-secondary transition-colors"
-                >
                   Property & Real Estate
                 </Link>
               </li>
@@ -166,7 +166,15 @@ export default function Footer() {
                   href="#practice-areas"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
-                  Cyber Crime
+                  Domestic Violence
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#practice-areas"
+                  className="text-cream text-sm hover:text-secondary transition-colors"
+                >
+                  Legal Drafting
                 </Link>
               </li>
             </ul>
@@ -205,7 +213,7 @@ export default function Footer() {
               <li>
                 <div className="flex items-center gap-2 text-cream text-sm justify-center md:justify-start">
                   <Clock className="w-4 h-4 flex-shrink-0" />
-                  <span>Mon - Sat: 10:00 AM - 7:00 PM</span>
+                  <span>Monday – Saturday: 10:00 AM – 9:00 PM</span>
                 </div>
               </li>
             </ul>

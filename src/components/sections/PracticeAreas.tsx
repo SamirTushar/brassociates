@@ -4,11 +4,13 @@ import {
   Gavel,
   Heart,
   FileText,
-  Building2,
   Home,
   ShieldAlert,
-  Landmark,
-  UserCheck,
+  Scale,
+  Users,
+  Lightbulb,
+  Briefcase,
+  FileCheck,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -16,44 +18,54 @@ import { useRef } from "react";
 
 const practiceAreas = [
   {
-    icon: Gavel,
-    title: "Criminal Defense",
-    description: "Bail, trials, appeals & legal representation",
+    icon: Heart,
+    title: "Family & Matrimonial Law",
+    description: "Divorce, custody disputes, maintenance, domestic violence, and court marriages.",
   },
   {
-    icon: Heart,
-    title: "Family & Matrimonial",
-    description: "Divorce, custody, maintenance & settlements",
+    icon: Gavel,
+    title: "Criminal Defense",
+    description: "Representation in bail applications, trial proceedings, appeals, and quashing petitions.",
   },
   {
     icon: FileText,
     title: "Civil Litigation",
-    description: "Disputes, recovery suits & injunctions",
-  },
-  {
-    icon: Building2,
-    title: "Corporate Law",
-    description: "Contracts, compliance & business advisory",
+    description: "Property disputes, recovery suits, injunctions, and general civil matters before courts.",
   },
   {
     icon: Home,
     title: "Property & Real Estate",
-    description: "Title disputes, agreements & documentation",
+    description: "Agreements, title disputes, possession matters, and property documentation.",
   },
   {
     icon: ShieldAlert,
-    title: "Cyber Crime",
-    description: "Online fraud, data theft & digital disputes",
+    title: "Domestic Violence",
+    description: "Protection orders, criminal complaints, and legal support under the Protection of Women from Domestic Violence Act.",
   },
   {
-    icon: Landmark,
-    title: "Constitutional Matters",
-    description: "Fundamental rights & PIL matters",
+    icon: Scale,
+    title: "Legal Drafting",
+    description: "Contracts, agreements, legal notices, petitions, and affidavits across all practice areas.",
   },
   {
-    icon: UserCheck,
-    title: "Consumer Protection",
-    description: "Consumer complaints & dispute resolution",
+    icon: Users,
+    title: "Court Marriages",
+    description: "Assistance with registration, documentation, and legal formalities for court marriages.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Consultation & Advisory",
+    description: "Legal opinions, strategy sessions, and professional guidance tailored to your specific needs.",
+  },
+  {
+    icon: Briefcase,
+    title: "Labour & Employment",
+    description: "Dedicated support for both employees and employers in workplace-related disputes.",
+  },
+  {
+    icon: FileCheck,
+    title: "Legal Documentation",
+    description: "We prepare accurate, well-structured legal documents tailored to your needs.",
   },
 ];
 

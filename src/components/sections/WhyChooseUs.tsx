@@ -1,6 +1,6 @@
 "use client";
 
-import { UserCheck, MessageCircle, Eye } from "lucide-react";
+import { UserCheck, MessageCircle, Users, Landmark, Heart, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -8,21 +8,39 @@ import { useRef } from "react";
 const features = [
   {
     icon: UserCheck,
-    title: "Dedicated Attention",
+    title: "Client-First Approach",
     description:
-      "Every case receives personal attention from our founding advocate. You're not just a file number — you're our priority.",
+      "We listen carefully, respond promptly, and keep you informed at every stage. Your case is our priority.",
   },
   {
     icon: MessageCircle,
-    title: "Always Accessible",
+    title: "Transparent Communication",
     description:
-      "Direct communication via WhatsApp and phone. No waiting days for responses. We're here when you need us.",
+      "No hidden fees, no complex jargon. We explain everything in simple terms so you know exactly where you stand.",
   },
   {
-    icon: Eye,
-    title: "Transparent Process",
+    icon: Users,
+    title: "Experienced Team",
     description:
-      "Clear updates at every stage of your case. No legal jargon confusion. You'll always know where you stand.",
+      "Years of litigation experience across family law, criminal defense, civil matters, and more.",
+  },
+  {
+    icon: Landmark,
+    title: "Strong Court Presence",
+    description:
+      "Regular practice at Shivaji Nagar Sessions Court and Bombay High Court.",
+  },
+  {
+    icon: Heart,
+    title: "Compassionate & Professional",
+    description:
+      "We understand that legal matters can be stressful. We offer support, clarity, and respect throughout.",
+  },
+  {
+    icon: Award,
+    title: "Proven Results",
+    description:
+      "Our success comes from preparation, dedication, and a deep understanding of law and procedure.",
   },
 ];
 
@@ -54,7 +72,7 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (

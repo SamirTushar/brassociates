@@ -1,18 +1,18 @@
 // Contact Information - Loaded from environment variables
 export const CONTACT_PHONE =
-  process.env.NEXT_PUBLIC_CONTACT_PHONE || "+91-7767012533";
+  process.env.NEXT_PUBLIC_CONTACT_PHONE || "+91-7066481275";
 export const CONTACT_WHATSAPP =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917767012533";
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917066481275";
 export const WHATSAPP_LINK = `https://wa.me/${CONTACT_WHATSAPP}`;
 export const PHONE_LINK = `tel:${CONTACT_PHONE}`;
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@brassociates.in";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "adv.bhaktirajput@gmail.com";
 export const ADDRESS =
-  process.env.NEXT_PUBLIC_ADDRESS || "Kothrud, Pune, Maharashtra";
+  process.env.NEXT_PUBLIC_ADDRESS || "Flat No 02, Ground Floor, Ayodhya House, Sant Dnyaneshwar Colony, Warje, Pune – 411052, Maharashtra, India";
 
 // Firm Information
-export const FIRM_NAME = "Bhakti Rajput & Associates";
-export const TAGLINE = "Justice. Integrity. Results.";
+export const FIRM_NAME = "Adv. Bhakti Rajput & Associates";
+export const TAGLINE = "Trusted Legal Solutions for Family Law, Civil Matters, Criminal Defense, and Legal Documentation";
 
 // Colors (for reference)
 export const COLORS = {

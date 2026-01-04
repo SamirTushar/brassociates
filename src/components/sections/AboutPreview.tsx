@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -10,73 +10,161 @@ export default function AboutPreview() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const values = [
+    { title: "Clarity", description: "explaining the law in a way that clients can truly understand" },
+    { title: "Integrity", description: "offering advice that is honest, realistic, and in the best interest of the client" },
+    { title: "Dedication", description: "investing time and attention into each matter" },
+    { title: "Respect", description: "treating every case with sensitivity, especially in family and criminal matters" },
+    { title: "Professionalism", description: "maintaining high standards in communication, drafting, and courtroom conduct" },
+  ];
+
   return (
     <section id="about" ref={ref} className="bg-cream py-20">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Left Column - Image (45%) */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-            className="flex-1 lg:w-[45%] w-full"
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
+            className="text-secondary font-body font-medium text-sm uppercase tracking-wider mb-3"
           >
-            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] bg-gray-300 rounded-lg shadow-lg border-l-4 border-secondary flex items-center justify-center">
-              <div className="text-center">
-                <p className="font-body text-muted text-base sm:text-lg font-medium">
-                  Advocate Photo
-                </p>
-                <p className="font-body text-muted text-xs sm:text-sm mt-2">
-                  400 x 500
-                </p>
-              </div>
-            </div>
+            About Us
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-3xl md:text-4xl font-bold text-primary mb-6"
+          >
+            Our Approach
+          </motion.h2>
+
+          {/* Intro Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-base md:text-lg text-dark leading-relaxed max-w-4xl mx-auto"
+          >
+            At Adv. Bhakti Rajput & Associates, our focus is on offering clear, practical, and reliable legal support. We assist clients across a wide range of matters including divorce and family disputes, domestic violence cases, property issues, criminal litigation, and all forms of legal drafting and documentation. We keep our approach simple: transparent communication, client-focused advice, and representation rooted in integrity.
+          </motion.p>
+        </div>
+
+        {/* Advocates Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Advocate 1 - Bhakti Rajput */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-white p-8 rounded-lg shadow-md border-l-4 border-secondary"
+          >
+            <h3 className="font-heading text-2xl font-bold text-primary mb-2">
+              Adv. Bhakti Tejsing Rajput
+            </h3>
+            <p className="font-body text-sm text-secondary font-semibold mb-4">
+              B.A., LL.B., LL.M.
+            </p>
+
+            <ul className="space-y-2 mb-4">
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Five years of litigation experience</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Regular practice before Shivaji Nagar Sessions Court and the Bombay High Court</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Graduate of ILS Law College</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Postgraduate specialization in Company Law</span>
+              </li>
+            </ul>
+
+            <p className="font-body text-base text-dark leading-relaxed">
+              Adv. Bhakti is known for a calm approach, strong drafting skills, and the ability to simplify complex issues for clients. Her work blends practical thinking with a deep understanding of procedural and substantive law.
+            </p>
           </motion.div>
 
-          {/* Right Column - Text Content (55%) */}
+          {/* Advocate 2 - Vishnu Pote */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 lg:w-[55%] text-center lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-white p-8 rounded-lg shadow-md border-l-4 border-secondary"
           >
-            {/* Small Gold Text */}
-            <p className="text-secondary font-body font-medium text-sm uppercase tracking-wider mb-4">
-              About the Founder
+            <h3 className="font-heading text-2xl font-bold text-primary mb-2">
+              Adv. Vishnu Vilas Pote
+            </h3>
+            <p className="font-body text-sm text-secondary font-semibold mb-4">
+              B.E., LL.B., LL.M.
             </p>
 
-            {/* Heading */}
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-3">
-              Adv. Bhakti Rajput
-            </h2>
+            <ul className="space-y-2 mb-4">
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Six years of courtroom experience</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Practice before Shivaji Nagar Sessions Court and the Bombay High Court</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Graduate of ILS Law College</span>
+              </li>
+              <li className="font-body text-sm text-dark flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                <span>Postgraduate specialization in Constitutional Law from Pune University</span>
+              </li>
+            </ul>
 
-            {/* Subheading */}
-            <p className="font-body text-lg text-muted mb-6">
-              Founder, Bhakti Rajput & Associates
+            <p className="font-body text-base text-dark leading-relaxed">
+              Adv. Vishnu brings a strong analytical mindset from his engineering background and pairs it with firm legal reasoning. He is appreciated for his strategic courtroom presence and clear, structured advice.
             </p>
-
-            {/* Bio Paragraph */}
-            <p className="font-body text-base text-dark leading-relaxed mb-8">
-              With a passion for justice and a commitment to her clients,
-              Advocate Bhakti Rajput founded Bhakti Rajput & Associates to provide
-              accessible, high-quality legal services in Pune and Mumbai. She
-              practices at the Mumbai High Court and various district courts
-              across Maharashtra, handling matters ranging from criminal defense
-              to civil litigation. Her approach combines thorough legal research
-              with compassionate client care, ensuring every client feels heard
-              and supported throughout their legal journey.
-            </p>
-
-            {/* CTA Link */}
-            <Link
-              href="#about"
-              className="inline-flex items-center gap-2 font-body text-secondary font-semibold hover:underline transition-all group"
-            >
-              <span>Learn More About Us</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </motion.div>
         </div>
+
+        {/* Mission & Values Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="bg-white p-8 md:p-12 rounded-lg shadow-md"
+        >
+          {/* Mission */}
+          <div className="mb-8">
+            <h3 className="font-heading text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+              <span className="text-secondary">—</span> Our Mission
+            </h3>
+            <p className="font-body text-base md:text-lg text-dark leading-relaxed">
+              Our mission is to make the law understandable, accessible, and supportive for every client who walks through our door. We aim to guide people with honesty, compassion, and professionalism so they feel informed and empowered at each stage of their case.
+            </p>
+          </div>
+
+          {/* Values */}
+          <div>
+            <h3 className="font-heading text-2xl font-bold text-primary mb-6 flex items-center gap-2">
+              <span className="text-secondary">—</span> Our Values
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {values.map((value, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-body font-bold text-dark mb-1">{value.title}</h4>
+                    <p className="font-body text-sm text-muted leading-relaxed">{value.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

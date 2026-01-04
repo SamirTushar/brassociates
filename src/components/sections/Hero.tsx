@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { CONTACT_PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/lib/constants";
+import { FIRM_NAME, TAGLINE, CONTACT_PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/lib/constants";
 
 export default function Hero() {
   return (
@@ -17,63 +17,79 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-1 lg:w-[55%] text-center lg:text-left"
           >
-            {/* Small Gold Text */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-secondary font-body font-medium text-sm uppercase tracking-wider mb-4"
+            {/* Badge - First Consultation Free */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="inline-flex items-center gap-2 bg-white border-2 border-secondary px-4 py-2 rounded-full mb-4"
             >
-              Welcome to Bhakti Rajput & Associates
-            </motion.p>
+              <CheckCircle className="w-4 h-4 text-secondary" />
+              <span className="font-body text-sm font-semibold text-dark">First Consultation Free</span>
+            </motion.div>
 
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 leading-tight"
             >
-              Trusted Legal Counsel in Pune & Mumbai
+              {FIRM_NAME}
             </motion.h1>
 
-            {/* Subtext */}
+            {/* Tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="font-body text-xl md:text-2xl text-primary font-medium mb-4 max-w-2xl mx-auto lg:mx-0"
+            >
+              {TAGLINE}
+            </motion.p>
+
+            {/* Value Line */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="font-body text-lg text-muted mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className="font-body text-lg text-dark mb-4 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Navigating complex legal matters with integrity, dedication, and a
-              commitment to your success. From criminal defense to corporate
-              law, we stand by your side.
+              Professional guidance, clear answers, and strong representation when you need it most
+            </motion.p>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="font-body text-base text-muted mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+            >
+              Your legal matter deserves attention and clarity. We help you understand your rights and move forward with confidence.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
+              {/* Book Free Consultation Button */}
+              <Link
+                href="#consultation"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-secondary text-dark font-body font-bold rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
+              >
+                <span>Book Free Consultation</span>
+              </Link>
+
               {/* Call Button */}
               <Link
                 href={PHONE_LINK}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-secondary text-dark font-body font-semibold rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
+                className="flex items-center justify-center gap-2 px-6 py-4 border-2 border-primary text-primary font-body font-semibold rounded-md hover:bg-primary hover:text-white transition-all duration-200 hover:-translate-y-1"
               >
                 <Phone className="w-5 h-5" />
                 <span>Call: {CONTACT_PHONE}</span>
-              </Link>
-
-              {/* WhatsApp Button */}
-              <Link
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white font-body font-semibold rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
-              >
-                <MessageCircle className="w-5 h-5" />
-                <span>WhatsApp Us</span>
               </Link>
             </motion.div>
           </motion.div>

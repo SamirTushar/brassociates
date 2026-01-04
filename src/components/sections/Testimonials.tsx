@@ -8,21 +8,15 @@ import { useRef } from "react";
 const testimonials = [
   {
     quote:
-      "Bhakti Rajput & Associates handled my case with utmost professionalism and dedication. They were available whenever I needed guidance and kept me informed at every step. Highly recommended for anyone seeking trustworthy legal counsel.",
-    name: "Rajesh M.",
-    location: "Pune",
+      "Adv. Bhakti handled my domestic violence case with such care and professionalism. She explained every step clearly and made me feel supported throughout the entire process. I'm grateful for her guidance.",
+    name: "Vrushali Nandedkar",
+    location: "Divorce & Domestic Violence Client",
   },
   {
     quote:
-      "I was extremely stressed about my property dispute, but the team at Bhakti Rajput & Associates made the entire process smooth and understandable. Their transparent approach gave me confidence throughout.",
-    name: "Sunita K.",
-    location: "Mumbai",
-  },
-  {
-    quote:
-      "Excellent legal support during a difficult time. The personal attention I received was remarkable. They genuinely care about their clients and it shows in their work.",
-    name: "Amit P.",
-    location: "Pune",
+      "I approached the firm for a property dispute that had been dragging for years. Adv. Vishnu's strategic thinking and courtroom skills made all the difference. The case was resolved in our favor, and I couldn't be happier with the result.",
+    name: "Samir Tushar",
+    location: "Property Dispute Client",
   },
 ];
 
@@ -54,7 +48,7 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}

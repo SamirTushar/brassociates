@@ -114,14 +114,16 @@ export default function Contact() {
                   className="w-full border border-gray-300 rounded-md py-3 px-4 font-body text-dark focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors"
                 >
                   <option value="">Select Case Type</option>
+                  <option value="family">Family & Matrimonial Law</option>
                   <option value="criminal">Criminal Defense</option>
-                  <option value="family">Family & Matrimonial</option>
                   <option value="civil">Civil Litigation</option>
-                  <option value="corporate">Corporate Law</option>
                   <option value="property">Property & Real Estate</option>
-                  <option value="cyber">Cyber Crime</option>
-                  <option value="constitutional">Constitutional Matters</option>
-                  <option value="consumer">Consumer Protection</option>
+                  <option value="domestic-violence">Domestic Violence</option>
+                  <option value="legal-drafting">Legal Drafting</option>
+                  <option value="court-marriage">Court Marriage</option>
+                  <option value="consultation">Consultation & Advisory</option>
+                  <option value="labour">Labour & Employment</option>
+                  <option value="legal-documentation">Legal Documentation</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -223,7 +225,7 @@ export default function Contact() {
                     Office Hours
                   </p>
                   <p className="font-body text-lg font-semibold text-primary">
-                    Mon - Sat: 10:00 AM - 7:00 PM
+                    Monday – Saturday: 10:00 AM – 9:00 PM
                   </p>
                 </div>
               </div>
