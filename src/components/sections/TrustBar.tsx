@@ -8,7 +8,7 @@ import { useRef } from "react";
 const trustIndicators = [
   {
     icon: Scale,
-    text: "Mumbai High Court Practice",
+    text: "Shivaji Nagar Sessions Court, Pune & Mumbai High Court Practice",
   },
   {
     icon: Users,
