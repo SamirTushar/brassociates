@@ -6,6 +6,7 @@ import Consultation from "@/components/sections/Consultation";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import AboutPreview from "@/components/sections/AboutPreview";
 import Testimonials from "@/components/sections/Testimonials";
+import Marathi from "@/components/sections/Marathi";
 import CTASection from "@/components/sections/CTASection";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
@@ -21,6 +22,7 @@ export default function Home() {
       <WhyChooseUs />
       <AboutPreview />
       <Testimonials />
+      <Marathi />
       <CTASection />
       <Contact />
       <Footer />

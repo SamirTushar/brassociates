@@ -76,6 +76,12 @@ export default function Header() {
             >
               Contact
             </Link>
+            <Link
+              href="#marathi"
+              className="font-body text-dark hover:text-primary transition-colors"
+            >
+              मराठी
+            </Link>
           </nav>
 
           {/* CTA Buttons */}

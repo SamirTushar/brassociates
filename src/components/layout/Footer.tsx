@@ -106,6 +106,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="#marathi"
+                  className="text-cream text-sm hover:text-secondary transition-colors"
+                >
+                  मराठी
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="#"
                   className="text-cream text-sm hover:text-secondary transition-colors"
                 >
