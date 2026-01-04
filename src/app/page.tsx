@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
 import PracticeAreas from "@/components/sections/PracticeAreas";
+import Consultation from "@/components/sections/Consultation";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import AboutPreview from "@/components/sections/AboutPreview";
 import Testimonials from "@/components/sections/Testimonials";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <PracticeAreas />
+      <Consultation />
       <WhyChooseUs />
       <AboutPreview />
       <Testimonials />

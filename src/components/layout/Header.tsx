@@ -65,6 +65,12 @@ export default function Header() {
               Practice Areas
             </Link>
             <Link
+              href="#consultation"
+              className="font-body text-dark hover:text-primary transition-colors"
+            >
+              Consultation
+            </Link>
+            <Link
               href="#contact"
               className="font-body text-dark hover:text-primary transition-colors"
             >
