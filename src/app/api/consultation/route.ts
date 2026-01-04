@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
 export async function POST(request: Request) {
   try {
@@ -19,22 +20,67 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if Resend API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('❌ RESEND_API_KEY is not configured');
+    // Check if Supabase is configured
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.error('❌ Supabase is not configured');
       return NextResponse.json(
-        { error: 'Email service is not configured. Please contact us directly.' },
+        { error: 'Database service is not configured' },
         { status: 500 }
       );
     }
 
-    console.log('✅ Validation passed, sending email...');
+    // Initialize Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    );
 
-    // Initialize Resend with API key
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    // Save to database FIRST (most important - never lose data)
+    console.log('💾 Saving to database...');
+    const { data: savedData, error: dbError } = await supabase
+      .from('consultations')
+      .insert([
+        {
+          full_name: data.fullName,
+          mobile: data.mobile,
+          email: data.email || null,
+          legal_matter: data.legalMatter,
+          consultation_mode: data.consultationMode,
+          preferred_date_time: data.preferredDateTime || null,
+          description: data.description || null,
+          status: 'pending'
+        }
+      ])
+      .select();
 
-    // Send email notification
-    const { data: emailData, error } = await resend.emails.send({
+    if (dbError) {
+      console.error('❌ Database error:', dbError);
+      return NextResponse.json(
+        { error: 'Failed to save consultation request' },
+        { status: 500 }
+      );
+    }
+
+    console.log('✅ Saved to database successfully!', savedData);
+
+    // Now try to send email notification (non-critical - data is already saved)
+    console.log('📧 Attempting to send email notification...');
+
+    if (!process.env.RESEND_API_KEY) {
+      console.warn('⚠️ RESEND_API_KEY is not configured - skipping email notification');
+      // Still return success since data is saved
+      return NextResponse.json({
+        success: true,
+        message: 'Consultation request submitted successfully (email notification skipped)'
+      });
+    }
+
+    try {
+      // Initialize Resend with API key
+      const resend = new Resend(process.env.RESEND_API_KEY);
+
+      // Send email notification
+      const { data: emailData, error } = await resend.emails.send({
       from: 'Consultation Form <onboarding@resend.dev>', // You'll change this to your domain later
       to: 'adv.bhaktirajput@gmail.com',
       replyTo: data.email || undefined,
@@ -147,20 +193,31 @@ export async function POST(request: Request) {
           </body>
         </html>
       `,
-    });
+      });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
+      if (error) {
+        console.error('⚠️ Email sending failed:', error);
+        // Still return success since data is saved in database
+        return NextResponse.json({
+          success: true,
+          message: 'Consultation request submitted successfully (email notification failed - check database)'
+        });
+      }
+
+      console.log('✅ Email sent successfully!');
+      return NextResponse.json({
+        success: true,
+        message: 'Consultation request submitted successfully'
+      });
+
+    } catch (emailError) {
+      console.error('⚠️ Email sending error:', emailError);
+      // Still return success since data is saved in database
+      return NextResponse.json({
+        success: true,
+        message: 'Consultation request submitted successfully (email notification error - check database)'
+      });
     }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Consultation request submitted successfully'
-    });
 
   } catch (error) {
     console.error('API error:', error);
