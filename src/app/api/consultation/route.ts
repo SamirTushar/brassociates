@@ -21,29 +21,33 @@ export async function POST(request: Request) {
     }
 
     // Save to database FIRST (most important - never lose data)
-    console.log('💾 Saving to database...');
+    // Check if database is configured
+    const isDatabaseConfigured = process.env.POSTGRES_PRISMA_URL && process.env.POSTGRES_URL_NON_POOLING;
 
-    try {
-      const savedData = await prisma.consultation.create({
-        data: {
-          fullName: data.fullName,
-          mobile: data.mobile,
-          email: data.email || null,
-          legalMatter: data.legalMatter,
-          consultationMode: data.consultationMode,
-          preferredDateTime: data.preferredDateTime || null,
-          description: data.description || null,
-          status: 'pending'
-        }
-      });
+    if (isDatabaseConfigured) {
+      console.log('💾 Saving to database...');
+      try {
+        const savedData = await prisma.consultation.create({
+          data: {
+            fullName: data.fullName,
+            mobile: data.mobile,
+            email: data.email || null,
+            legalMatter: data.legalMatter,
+            consultationMode: data.consultationMode,
+            preferredDateTime: data.preferredDateTime || null,
+            description: data.description || null,
+            status: 'pending'
+          }
+        });
 
-      console.log('✅ Saved to database successfully!', savedData.id);
-    } catch (dbError) {
-      console.error('❌ Database error:', dbError);
-      return NextResponse.json(
-        { error: 'Failed to save consultation request. Database may not be set up yet.' },
-        { status: 500 }
-      );
+        console.log('✅ Saved to database successfully!', savedData.id);
+      } catch (dbError) {
+        console.error('❌ Database error:', dbError);
+        // Don't fail - just log and continue to email
+        console.warn('⚠️ Database save failed, but continuing with email notification');
+      }
+    } else {
+      console.warn('⚠️ Database not configured - skipping database save (email will still work)');
     }
 
     // Now try to send email notification (non-critical - data is already saved)
