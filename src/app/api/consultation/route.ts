@@ -4,9 +4,15 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
+    console.log('📩 New consultation request received:', {
+      name: data.fullName,
+      mobile: data.mobile,
+      legalMatter: data.legalMatter
+    });
 
     // Validate required fields
     if (!data.fullName || !data.mobile || !data.legalMatter || !data.consultationMode) {
+      console.error('❌ Validation failed: Missing required fields');
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -15,12 +21,14 @@ export async function POST(request: Request) {
 
     // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
+      console.error('❌ RESEND_API_KEY is not configured');
       return NextResponse.json(
         { error: 'Email service is not configured. Please contact us directly.' },
         { status: 500 }
       );
     }
+
+    console.log('✅ Validation passed, sending email...');
 
     // Initialize Resend with API key
     const resend = new Resend(process.env.RESEND_API_KEY);

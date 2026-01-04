@@ -93,18 +93,23 @@ export default function Consultation() {
         body: JSON.stringify(data),
       });
 
+      const result = await response.json();
+      console.log('API Response:', response.status, result);
+
       if (response.ok) {
+        console.log('✅ Form submitted successfully!');
         setSubmitStatus('success');
         e.currentTarget.reset();
-        // Scroll to top of form to show success message
+        // Auto-hide success message after 8 seconds
         setTimeout(() => {
           setSubmitStatus('idle');
-        }, 5000);
+        }, 8000);
       } else {
+        console.error('❌ Form submission failed:', result);
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('❌ Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
