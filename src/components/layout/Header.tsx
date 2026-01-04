@@ -35,17 +35,17 @@ export default function Header() {
             : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-6 h-full flex items-center justify-between">
+        <div className="container mx-auto px-6 h-full flex items-center justify-between gap-8">
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
+            className="font-heading text-2xl font-bold text-primary hover:opacity-80 transition-opacity flex-shrink-0"
           >
             {FIRM_NAME}
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
               href="#home"
               className="font-body text-dark hover:text-primary transition-colors"

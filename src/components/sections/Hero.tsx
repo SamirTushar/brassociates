@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MessageCircle, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { FIRM_NAME, TAGLINE, CONTACT_PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/lib/constants";
@@ -104,14 +105,15 @@ export default function Hero() {
             {/* Navy Blue Block */}
             <div className="absolute right-0 top-10 w-4/5 h-[350px] sm:h-[400px] lg:h-[450px] bg-primary rounded-l-lg" />
 
-            {/* Image Placeholder - Overlapping Navy Block */}
-            <div className="absolute left-0 top-0 w-4/5 h-[400px] sm:h-[450px] lg:h-[500px] bg-gray-300 rounded-lg shadow-2xl flex items-center justify-center">
-              <div className="text-center">
-                <p className="font-body text-muted text-base sm:text-lg font-medium">
-                  Lawyer Photo
-                </p>
-                <p className="font-body text-muted text-xs sm:text-sm mt-2">400 x 500</p>
-              </div>
+            {/* Lawyer Photo - Overlapping Navy Block */}
+            <div className="absolute left-0 top-0 w-4/5 h-[400px] sm:h-[450px] lg:h-[500px] rounded-lg shadow-2xl overflow-hidden">
+              <Image
+                src="/photo1.webp"
+                alt="Adv. Bhakti Rajput - Legal Advocate"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </motion.div>
         </div>
