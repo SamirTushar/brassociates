@@ -8,7 +8,7 @@ import { FIRM_NAME, TAGLINE, CONTACT_PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-cream py-20 overflow-hidden">
+    <section id="home" className="bg-cream py-20 pb-32 md:pb-20 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column - Text Content (55%) */}

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, Menu } from "lucide-react";
-import { motion } from "framer-motion";
+import { Phone, MessageCircle, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FIRM_NAME,
   PHONE_LINK,
@@ -13,6 +13,7 @@ import {
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,10 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -98,14 +103,63 @@ export default function Header() {
 
             {/* Mobile Menu Icon */}
             <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 text-primary hover:bg-primary hover:bg-opacity-10 rounded-md transition-colors"
               aria-label="Menu"
             >
-              <Menu className="w-6 h-6" />
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
       </motion.header>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-20 left-0 right-0 z-40 md:hidden bg-white shadow-lg overflow-hidden"
+          >
+            <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              <Link
+                href="#about"
+                onClick={closeMobileMenu}
+                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+              >
+                About
+              </Link>
+              <Link
+                href="#practice-areas"
+                onClick={closeMobileMenu}
+                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+              >
+                Practice Areas
+              </Link>
+              <Link
+                href="#consultation"
+                onClick={closeMobileMenu}
+                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+              >
+                Consultation
+              </Link>
+              <Link
+                href="#marathi"
+                onClick={closeMobileMenu}
+                className="font-body text-lg text-dark bg-secondary px-4 py-3 rounded-md hover:bg-opacity-90 transition-all text-center font-semibold"
+              >
+                मराठी
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Spacer to prevent content from going under fixed header */}
       <div className="h-20" />
