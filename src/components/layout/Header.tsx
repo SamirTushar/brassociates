@@ -78,7 +78,7 @@ export default function Header() {
             </Link>
             <Link
               href="#marathi"
-              className="font-body text-dark hover:text-primary transition-colors"
+              className="font-body text-dark bg-secondary px-4 py-2 rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 font-semibold"
             >
               मराठी
             </Link>
