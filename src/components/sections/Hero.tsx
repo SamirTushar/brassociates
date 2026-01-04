@@ -8,15 +8,15 @@ import { FIRM_NAME, TAGLINE, CONTACT_PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-cream py-20 pb-32 md:pb-20 overflow-hidden">
+    <section id="home" className="bg-cream pt-8 pb-8 md:py-20 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           {/* Left Column - Text Content (55%) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 lg:w-[55%] text-center lg:text-left"
+            className="flex-1 lg:w-[55%] text-center lg:text-left order-2 lg:order-1"
           >
             {/* Badge - First Consultation Free */}
             <motion.div
@@ -100,13 +100,13 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-1 lg:w-[45%] relative h-[400px] sm:h-[450px] lg:h-[500px] w-full max-w-md lg:max-w-none"
+            className="flex-1 lg:w-[45%] relative h-[350px] sm:h-[450px] lg:h-[500px] w-full max-w-md lg:max-w-none order-1 lg:order-2"
           >
             {/* Navy Blue Block */}
-            <div className="absolute right-0 top-10 w-4/5 h-[350px] sm:h-[400px] lg:h-[450px] bg-primary rounded-l-lg" />
+            <div className="absolute right-0 top-10 w-4/5 h-[300px] sm:h-[400px] lg:h-[450px] bg-primary rounded-l-lg" />
 
             {/* Lawyer Photo - Overlapping Navy Block */}
-            <div className="absolute left-0 top-0 w-4/5 h-[400px] sm:h-[450px] lg:h-[500px] rounded-lg shadow-2xl overflow-hidden">
+            <div className="absolute left-0 top-0 w-4/5 h-[350px] sm:h-[450px] lg:h-[500px] rounded-lg shadow-2xl overflow-hidden">
               <Image
                 src="/photo1.webp"
                 alt="Adv. Bhakti Rajput - Legal Advocate"

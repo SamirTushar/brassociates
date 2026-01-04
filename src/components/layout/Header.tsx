@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Phone, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   FIRM_NAME,
   PHONE_LINK,
@@ -13,7 +13,6 @@ import {
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,145 +23,119 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <>
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-white shadow-md"
-            : "bg-transparent"
+            : "bg-white md:bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-6 h-full flex items-center justify-between gap-8">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="font-heading text-2xl font-bold text-primary hover:opacity-80 transition-opacity flex-shrink-0"
-          >
-            {FIRM_NAME}
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Top Row - Logo and CTA Buttons */}
+          <div className="flex items-center justify-between h-16 md:h-20 gap-4">
+            {/* Logo */}
             <Link
-              href="#about"
-              className="font-body text-dark hover:text-primary transition-colors"
+              href="/"
+              className="font-heading text-lg md:text-2xl font-bold text-primary hover:opacity-80 transition-opacity flex-shrink-0"
             >
-              About
-            </Link>
-            <Link
-              href="#practice-areas"
-              className="font-body text-dark hover:text-primary transition-colors"
-            >
-              Practice Areas
-            </Link>
-            <Link
-              href="#consultation"
-              className="font-body text-dark hover:text-primary transition-colors"
-            >
-              Consultation
-            </Link>
-            <Link
-              href="#marathi"
-              className="font-body text-dark bg-secondary px-4 py-2 rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 font-semibold"
-            >
-              मराठी
-            </Link>
-          </nav>
-
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Call Now Button */}
-            <Link
-              href={PHONE_LINK}
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-secondary text-dark font-body font-medium rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
-              aria-label="Call Now"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="hidden lg:inline">Call Now</span>
+              {FIRM_NAME}
             </Link>
 
-            {/* WhatsApp Button */}
-            <Link
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#25D366] text-white font-body font-medium rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span className="hidden lg:inline">WhatsApp</span>
-            </Link>
-
-            {/* Mobile Menu Icon */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-primary hover:bg-primary hover:bg-opacity-10 rounded-md transition-colors"
-              aria-label="Menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </motion.header>
-
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-20 left-0 right-0 z-40 md:hidden bg-white shadow-lg overflow-hidden"
-          >
-            <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
               <Link
                 href="#about"
-                onClick={closeMobileMenu}
-                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+                className="font-body text-dark hover:text-primary transition-colors"
               >
                 About
               </Link>
               <Link
                 href="#practice-areas"
-                onClick={closeMobileMenu}
-                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+                className="font-body text-dark hover:text-primary transition-colors"
               >
                 Practice Areas
               </Link>
               <Link
                 href="#consultation"
-                onClick={closeMobileMenu}
-                className="font-body text-lg text-dark hover:text-primary transition-colors py-2 border-b border-gray-200"
+                className="font-body text-dark hover:text-primary transition-colors"
               >
                 Consultation
               </Link>
               <Link
                 href="#marathi"
-                onClick={closeMobileMenu}
-                className="font-body text-lg text-dark bg-secondary px-4 py-3 rounded-md hover:bg-opacity-90 transition-all text-center font-semibold"
+                className="font-body text-dark bg-secondary px-4 py-2 rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 font-semibold"
               >
                 मराठी
               </Link>
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* CTA Buttons */}
+            <div className="flex items-center gap-2">
+              {/* Call Now Button */}
+              <Link
+                href={PHONE_LINK}
+                className="flex items-center gap-2 px-3 md:px-4 py-2 bg-secondary text-dark font-body font-medium rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                aria-label="Call Now"
+              >
+                <Phone className="w-4 h-4" />
+                <span className="hidden lg:inline">Call Now</span>
+              </Link>
+
+              {/* WhatsApp Button */}
+              <Link
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:flex items-center gap-2 px-3 md:px-4 py-2 bg-[#25D366] text-white font-body font-medium rounded-md hover:bg-opacity-90 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span className="hidden lg:inline">WhatsApp</span>
+              </Link>
+
+            </div>
+          </div>
+
+          {/* Mobile Navigation - Always visible on mobile */}
+          <nav className="md:hidden flex items-center gap-3 overflow-x-auto pb-3 pt-2 border-t border-gray-200">
+            <Link
+              href="#about"
+              className="font-body text-sm text-dark hover:text-primary transition-colors whitespace-nowrap px-2 py-1"
+            >
+              About
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link
+              href="#practice-areas"
+              className="font-body text-sm text-dark hover:text-primary transition-colors whitespace-nowrap px-2 py-1"
+            >
+              Practice Areas
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link
+              href="#consultation"
+              className="font-body text-sm text-dark hover:text-primary transition-colors whitespace-nowrap px-2 py-1"
+            >
+              Consultation
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link
+              href="#marathi"
+              className="font-body text-sm text-dark bg-secondary px-3 py-1 rounded-md hover:bg-opacity-90 transition-all font-semibold whitespace-nowrap"
+            >
+              मराठी
+            </Link>
+          </nav>
+        </div>
+      </motion.header>
 
       {/* Spacer to prevent content from going under fixed header */}
-      <div className="h-20" />
+      <div className="h-24 md:h-20" />
     </>
   );
 }
