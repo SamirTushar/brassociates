@@ -40,6 +40,7 @@ const steps = [
 
 export default function Consultation() {
   const ref = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -99,19 +100,20 @@ export default function Consultation() {
       if (response.ok) {
         console.log('✅ Form submitted successfully!');
         setSubmitStatus('success');
-        e.currentTarget.reset();
-        // Auto-hide success message after 8 seconds
-        setTimeout(() => {
-          setSubmitStatus('idle');
-        }, 8000);
+        // Reset form using ref (not e.currentTarget which may be null)
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+        // Keep button in "Submitted" state - don't reset to idle
+        // User can refresh page to submit again if needed
       } else {
         console.error('❌ Form submission failed:', result);
         setSubmitStatus('error');
+        setIsSubmitting(false);
       }
     } catch (error) {
       console.error('❌ Form submission error:', error);
       setSubmitStatus('error');
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -233,7 +235,7 @@ export default function Consultation() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
                 <label
@@ -442,10 +444,19 @@ export default function Consultation() {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || submitStatus === 'success'}
                 className="w-full bg-secondary text-dark font-body font-bold py-4 rounded-md hover:bg-opacity-90 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                {isSubmitting ? 'Submitting...' : 'Book Free Consultation'}
+                {submitStatus === 'success' ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <CheckCircle className="w-5 h-5" />
+                    Submitted Successfully
+                  </span>
+                ) : isSubmitting ? (
+                  'Submitting...'
+                ) : (
+                  'Book Free Consultation'
+                )}
               </button>
 
               {/* Privacy Note */}
