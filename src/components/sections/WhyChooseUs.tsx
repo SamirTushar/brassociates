@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.5 }}
             className="text-secondary font-body font-medium text-sm uppercase tracking-wider mb-3"
           >
-            Why BR Associates
+            Why Bhakti Rajput & Associates
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

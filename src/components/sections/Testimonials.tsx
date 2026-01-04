@@ -8,13 +8,13 @@ import { useRef } from "react";
 const testimonials = [
   {
     quote:
-      "BR Associates handled my case with utmost professionalism and dedication. They were available whenever I needed guidance and kept me informed at every step. Highly recommended for anyone seeking trustworthy legal counsel.",
+      "Bhakti Rajput & Associates handled my case with utmost professionalism and dedication. They were available whenever I needed guidance and kept me informed at every step. Highly recommended for anyone seeking trustworthy legal counsel.",
     name: "Rajesh M.",
     location: "Pune",
   },
   {
     quote:
-      "I was extremely stressed about my property dispute, but the team at BR Associates made the entire process smooth and understandable. Their transparent approach gave me confidence throughout.",
+      "I was extremely stressed about my property dispute, but the team at Bhakti Rajput & Associates made the entire process smooth and understandable. Their transparent approach gave me confidence throughout.",
     name: "Sunita K.",
     location: "Mumbai",
   },

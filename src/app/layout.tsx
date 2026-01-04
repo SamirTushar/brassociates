@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BR Associates | Law Firm in Pune & Mumbai",
+  title: "Bhakti Rajput & Associates | Law Firm in Pune & Mumbai",
   description:
     "Trusted legal counsel in Pune and Mumbai. Expert lawyers for criminal defense, civil litigation, family law, corporate law and more.",
 };

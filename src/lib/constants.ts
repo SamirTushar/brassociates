@@ -11,7 +11,7 @@ export const ADDRESS =
   process.env.NEXT_PUBLIC_ADDRESS || "Kothrud, Pune, Maharashtra";
 
 // Firm Information
-export const FIRM_NAME = "BR Associates";
+export const FIRM_NAME = "Bhakti Rajput & Associates";
 export const TAGLINE = "Justice. Integrity. Results.";
 
 // Colors (for reference)

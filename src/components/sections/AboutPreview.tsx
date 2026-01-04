@@ -52,13 +52,13 @@ export default function AboutPreview() {
 
             {/* Subheading */}
             <p className="font-body text-lg text-muted mb-6">
-              Founder, BR Associates
+              Founder, Bhakti Rajput & Associates
             </p>
 
             {/* Bio Paragraph */}
             <p className="font-body text-base text-dark leading-relaxed mb-8">
               With a passion for justice and a commitment to her clients,
-              Advocate Bhakti Rajput founded BR Associates to provide
+              Advocate Bhakti Rajput founded Bhakti Rajput & Associates to provide
               accessible, high-quality legal services in Pune and Mumbai. She
               practices at the Mumbai High Court and various district courts
               across Maharashtra, handling matters ranging from criminal defense

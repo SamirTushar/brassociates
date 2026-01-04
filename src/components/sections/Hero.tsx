@@ -24,7 +24,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-secondary font-body font-medium text-sm uppercase tracking-wider mb-4"
             >
-              Welcome to BR Associates
+              Welcome to Bhakti Rajput & Associates
             </motion.p>
 
             {/* Main Heading */}
