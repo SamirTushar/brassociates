@@ -68,8 +68,8 @@ export async function POST(request: Request) {
 
       // Send email notification
       const { data: emailData, error } = await resend.emails.send({
-      from: 'Consultation Form <onboarding@resend.dev>', // Test domain - only sends to samirtushar1@gmail.com
-      to: 'samirtushar1@gmail.com', // TEMPORARY: Change back to adv.bhaktirajput@gmail.com after domain verification
+      from: 'BR Associates <noreply@advbhaktirajput.com>',
+      to: 'adv.bhaktirajput@gmail.com',
       replyTo: data.email || undefined,
       subject: `New Consultation Request from ${data.fullName}`,
       html: `
